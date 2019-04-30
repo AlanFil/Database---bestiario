@@ -259,7 +259,7 @@ IF OBJECT_ID('Uwgai_Wiedźmina','P') IS NOT NULL
 DROP PROCEDURE Uwagi_Wiedźmina
 GO
 
-CREATE PROCEDURE Uwagi_Wiedźmina @bestia NVARCHAR(MAX)= 'Licho', @wiedźmin NVARCHAR(MAX) = 'Eskel' AS
+CREATE PROCEDURE Uwagi_Wiedźmina @bestia NVARCHAR(20), @wiedźmin NVARCHAR(20) AS
 SELECT "Data", Bestiariusz.dbo.Lista.Bestia, Liczba, Polujący, Uwagi FROM Bestiariusz.dbo.Polowania
 INNER JOIN Bestiariusz.dbo.Lista on Bestiariusz.dbo.Polowania.Bestia=ID_Bestie
 WHERE Bestiariusz.dbo.Lista.Bestia = @bestia AND Polujący = @wiedźmin AND Uwagi != ''
@@ -281,7 +281,8 @@ SELECT * FROM Raport_3
 EXEC Wiedźmin_miesiąca
 
 --Raport 5
-EXEC Uwagi_Wiedźmina
+EXEC Uwagi_Wiedźmina 'Licho', 'Eskel'
+
 
 --Raport 6
 SELECT TOP 5 "Data", Bestiariusz.dbo.Lista.Bestia, Liczba, Polujący, Uwagi
